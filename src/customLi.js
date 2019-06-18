@@ -1,7 +1,7 @@
 import React from "react";
 
-const customLi = () => {
-  return <li />;
+const CustomLi = () => {
+  return <li>custom li</li>;
 };
 
-export default customLi;
+export default CustomLi;
