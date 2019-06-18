@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 
-const DefaultLi = () => {
+const DefaultLi = ({ addNewItem }) => {
   const [name, setName] = useState("");
 
   const handleSubmit = () => {
     name.length > 0
-      ? console.log(name)
+      ? addNewItem(name)
       : alert("No item will be added without a name.");
+
+    setName("");
   };
 
   return (
-    <div>
+    <li>
       <form>
         <input
           value={name}
@@ -28,7 +30,7 @@ const DefaultLi = () => {
           Add
         </button>
       </form>
-    </div>
+    </li>
   );
 };
 
