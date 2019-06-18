@@ -12,15 +12,33 @@ const Ul = () => {
     );
   };
 
+  const defineUpButtonDisplayValue = id => {
+    const index = items.findIndex(i => i.id === id);
+    return index > 0 ? "inline" : "none";
+  };
+
   const addNewItem = name => {
-    return setItems(prev => [<CustomLi key={ID()} name={name} />, ...prev]);
+    const id = ID();
+    const newItem = {
+      id,
+      value: (
+        <CustomLi
+          name={name}
+          id={id}
+          index={items}
+          up={defineUpButtonDisplayValue}
+        />
+      )
+    };
+
+    setItems(prev => [newItem, ...prev]);
   };
 
   const [items, setItems] = useState([
-    <DefaultLi key={ID()} addNewItem={addNewItem} />
+    { id: ID(), value: <DefaultLi addNewItem={addNewItem} /> }
   ]);
 
-  return <ul>{items}</ul>;
+  return <ul>{items.map(i => i.value)}</ul>;
 };
 
 export default Ul;
