@@ -21,7 +21,7 @@ const List = () => {
 
     let temp;
     switch (type) {
-      case "erase":
+      case "remove":
         list.splice(index, 1);
         break;
       case "up":

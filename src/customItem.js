@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import List from "./list";
+import Button from "./button";
 
 const CustomItem = props => {
   const [sublist, setSublist] = useState(false);
@@ -10,33 +11,11 @@ const CustomItem = props => {
   return (
     <li>
       {props.name}
-      {up && (
-        <button
-          onClick={() => {
-            props.alterList(props.id, "up");
-          }}
-        >
-          up
-        </button>
-      )}
+      {up && <Button alterList={props.alterList} id={props.id} action={"up"} />}
       {down && (
-        <button
-          onClick={() => {
-            props.alterList(props.id, "down");
-          }}
-        >
-          down
-        </button>
+        <Button alterList={props.alterList} id={props.id} action={"down"} />
       )}
-      {
-        <button
-          onClick={() => {
-            props.alterList(props.id, "erase");
-          }}
-        >
-          remove
-        </button>
-      }
+      {<Button alterList={props.alterList} id={props.id} action={"remove"} />}
       {
         <button
           onClick={() => {
