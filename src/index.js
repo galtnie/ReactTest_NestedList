@@ -1,12 +1,11 @@
-// import "./styles.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import Ul from "./ulComponent";
+import List from "./list";
 
 const App = () => {
   return (
     <div>
-      <Ul />
+      <List />
     </div>
   );
 };

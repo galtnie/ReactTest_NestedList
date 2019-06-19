@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import { setID } from "./functions";
 
-const DefaultLi = ({ addNewItem }) => {
+const DefaultItem = ({ addItem }) => {
   const [name, setName] = useState("");
+  const [id] = useState(setID());
 
-  const handleSubmit = () => {
+  const checkName = () => {
     name.length > 0
-      ? addNewItem(name)
+      ? addItem(name)
       : alert("No item will be added without a name.");
 
     setName("");
   };
 
   return (
-    <li>
+    <li key={id}>
       <input
         value={name}
         type="text"
@@ -22,7 +24,7 @@ const DefaultLi = ({ addNewItem }) => {
       />
       <button
         onClick={e => {
-          handleSubmit();
+          checkName();
         }}
       >
         Add
@@ -31,4 +33,4 @@ const DefaultLi = ({ addNewItem }) => {
   );
 };
 
-export default DefaultLi;
+export default DefaultItem;

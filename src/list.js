@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import DefaultLi from "./defaultLi";
+import DefaultItem from "./defaultItem";
 import CustomItem from "./customItem";
 import { setID } from "./functions";
 
-const Ul = () => {
+const List = () => {
   const [name, setName] = useState("");
   const [items, setItems] = useState([]);
 
@@ -41,28 +41,12 @@ const Ul = () => {
   return (
     <ul>
       {renderItems(items)}
-
-      <li key={setID()}>
-        <input
-          value={name}
-          type="text"
-          onChange={e => {
-            setName(e.target.value);
-          }}
-        />
-        <button
-          onClick={e => {
-            checkName();
-          }}
-        >
-          Add
-        </button>
-      </li>
+      <DefaultItem addItem={addNewItem} />
     </ul>
   );
 };
 
-export default Ul;
+export default List;
 
 // const addNewItem = name => {
 //   const id = setID();
