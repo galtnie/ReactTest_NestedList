@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DefaultItem from "./defaultItem";
 import CustomItem from "./customItem";
 import { setID } from "./functions";
@@ -12,8 +12,33 @@ const List = () => {
       id: setID(),
       sublist: false
     };
-
     setItems(prev => [newItem, ...prev]);
+  };
+
+  const alterList = (itemId, type) => {
+    const index = items.findIndex(i => i.id === itemId);
+    const list = JSON.parse(JSON.stringify(items));
+
+    let temp;
+    switch (type) {
+      case "erase":
+        list.splice(index, 1);
+        break;
+      case "up":
+        temp = list[index];
+        list[index] = list[index - 1];
+        list[index - 1] = temp;
+        break;
+      case "down":
+        temp = list[index];
+        list[index] = list[index + 1];
+        list[index + 1] = temp;
+        break;
+      default:
+        return null;
+    }
+
+    setItems(list);
   };
 
   const renderItems = items => {
@@ -24,7 +49,8 @@ const List = () => {
           index={index}
           key={i.id}
           itemsLength={items.length}
-          sublist={i.sublist}
+          id={i.id}
+          alterList={alterList}
         />
       );
     });

@@ -10,9 +10,33 @@ const CustomItem = props => {
   return (
     <li>
       {props.name}
-      {up && <button>up</button>}
-      {down && <button>down</button>}
-      {<button>remove</button>}
+      {up && (
+        <button
+          onClick={() => {
+            props.alterList(props.id, "up");
+          }}
+        >
+          up
+        </button>
+      )}
+      {down && (
+        <button
+          onClick={() => {
+            props.alterList(props.id, "down");
+          }}
+        >
+          down
+        </button>
+      )}
+      {
+        <button
+          onClick={() => {
+            props.alterList(props.id, "erase");
+          }}
+        >
+          remove
+        </button>
+      }
       {
         <button
           onClick={() => {
