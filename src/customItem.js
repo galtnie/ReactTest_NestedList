@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import List from "./list";
 
 const CustomItem = props => {
   const [sublist, setSublist] = useState(false);
-  // const [items, setItems] = useState(props.items);
-
-  // useEffect(() => {
-  //   setItems(props.getItemsLength());
-  //   setIndex(props.getIndex(props.id));
-  // }, [props.items.length]);
 
   const up = props.index !== 0 ? true : false;
   const down = props.index !== props.itemsLength - 1 ? true : false;
@@ -18,35 +13,18 @@ const CustomItem = props => {
       {up && <button>up</button>}
       {down && <button>down</button>}
       {<button>remove</button>}
-      {sublist ? (
+      {
         <button
           onClick={() => {
-            setSublist(false);
+            setSublist(!sublist);
           }}
         >
-          remove sublist
+          {`${sublist ? "remove" : "add"} sublist`}
         </button>
-      ) : (
-        <button
-          onClick={() => {
-            setSublist(true);
-          }}
-        >
-          {" "}
-          add sublist{" "}
-        </button>
-      )}
+      }
+      {sublist && <List />}
     </li>
   );
 };
 
 export default CustomItem;
-
-// useEffect(() => {
-//   let index = 0;
-
-//   items.forEach(i => {
-//     console.log(i.value);
-//     i.value.index = index++;
-//   });
-// }, [items]);
